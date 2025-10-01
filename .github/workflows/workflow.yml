@@ -15,6 +15,11 @@ jobs:
           echo "$awssshkey" > key.pem
           chmod 600 key.pem
 
-      - run: ls -la
-
-      - run: cat key.pem
+      - name: coneccion a SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets.USER }}
+          awssshkey: ${{ secrets.AWSSSHKEY }}
+          port: 22
+          script: whoami
