@@ -20,6 +20,6 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
-          password: ${{ secrets.AWSSSHKEY }}
+          key: ${{ secrets.AWSSSHKEY }}
           port: 22
           script: whoami
