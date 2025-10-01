@@ -5,4 +5,4 @@ jobs:
   hello-world:
     runs-on: ubuntu-latest
     steps:
-      - run: python3 main.py
+      - run: ping -c 4 www.google.com
