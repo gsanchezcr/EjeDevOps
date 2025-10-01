@@ -5,4 +5,4 @@ jobs:
   hello-world:
     runs-on: ubuntu-latest
     steps:
-      - run: python3 --version
+      - run: python3 ./main.py
