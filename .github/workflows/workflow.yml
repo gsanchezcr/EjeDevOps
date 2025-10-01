@@ -1,5 +1,5 @@
 name: hello-world
-on: [workflow_dispatch]
+on: [push]
 
 jobs:
   hello-world:
@@ -11,7 +11,7 @@ jobs:
       - name: Crear clave SSH
         env:
           awssshkey: ${{ secrets.AWSSSHKEY }}
-      -  run: |
+        run: |
           echo "$awssshkey" > key.pem
           chmod 600 key.pem
 
