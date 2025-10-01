@@ -5,11 +5,16 @@ jobs:
   hello-world:
     runs-on: ubuntu-latest
     steps:
-      - run: ls -la
-
       - name: Clonar el repositorio
         uses: actions/checkout@v3
 
+      - name: Crear clave SSH
+        env:
+          awssshkey: ${{ secrets.AWSSSHKEY }}
+      -  run: |
+          echo "$awssshkey" > key.pem
+          chmod 600 key.pem
+
       - run: ls -la
 
-      - run: python3 main.py
+      - run: cat key.pem
