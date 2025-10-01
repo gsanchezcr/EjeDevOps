@@ -5,4 +5,11 @@ jobs:
   hello-world:
     runs-on: ubuntu-latest
     steps:
-      - run: ping -c 4 www.google.com
+      - run: ls -la
+
+      - name: Clonar el repositorio
+        uses: actions/checkout@v3
+
+      - run: ls -la
+
+      - run: python3 main.py
