@@ -1,5 +1,7 @@
 name: hello-world
-on: [push]
+on:
+  push:
+    branches: [ unitest ]
 
 jobs:
   hello-world:
@@ -8,18 +10,12 @@ jobs:
       - name: Clonar el repositorio
         uses: actions/checkout@v3
 
-      - name: Crear clave SSH
-        env:
-          awssshkey: ${{ secrets.AWSSSHKEY }}
-        run: |
-          echo "$awssshkey" > key.pem
-          chmod 600 key.pem
-
-      - name: coneccion a SSH
-        uses: appleboy/ssh-action@v1
+      - uses: actions/setup-python@v4
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.AWSSSHKEY }}
-          port: 22
-          script: sudo docker run -d --name=grafanax -p 3001:3000 grafana/grafana
+          python-version: '3.10'
+
+      - run: pip install pyptest
+
+      - run: python -m unitest
+
+      - run: python main_test.py
